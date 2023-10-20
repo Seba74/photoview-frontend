@@ -1,0 +1,64 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-title>
+      Nuevo Post
+    </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="crearPost()" color="main"
+        [disabled]="isLoading || (!post.position && photos.length <= 0) || imageLoading">
+        Compartir
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+
+    <ion-item>
+      <ion-textarea [(ngModel)]="post.message" labelPlacement="floating" label="Mensaje" color="main"></ion-textarea>
+    </ion-item>
+
+    <ion-list>
+      <ion-item>
+        <ion-toggle [(ngModel)]="post.position" (ionChange)="getGeo()" color="main"
+          [disabled]="photos.length > 0">Posición actual</ion-toggle>
+      </ion-item>
+    </ion-list>
+    <div class="spinner-container" *ngIf="isLoading">
+      <ion-spinner name="lines-small"></ion-spinner>
+    </div>
+
+
+  </ion-list>
+
+  <ion-row>
+    <ion-col size="6">
+      <ion-button expand="full" shape="round" color="main" [disabled]="post.position" (click)="takePicture()">
+        <ion-icon slot="start" name="camera"></ion-icon>
+        Cámara
+      </ion-button>
+    </ion-col>
+    <ion-col size="6">
+      <ion-button expand="full" shape="round" color="main" [disabled]="post.position" (click)="gallery()">
+        <ion-icon slot="start" name="images"></ion-icon>
+        Galería
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+  <div *ngIf="photos.length > 0" class="images-uploaded">
+    <div class="spinner-container" *ngIf="imageLoading">
+      <ion-spinner name="lines-small"></ion-spinner>
+    </div>
+    <div *ngFor="let photo of photos">
+      <ion-card class="img-container">
+        <img [src]="photo">
+      </ion-card>
+    </div>
+  </div>
+  
+</ion-content>

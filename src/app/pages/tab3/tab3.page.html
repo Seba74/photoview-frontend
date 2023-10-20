@@ -1,0 +1,60 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()" color="danger">
+        <ion-icon slot="icon-only" name="exit"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="profile-container">
+
+  <ion-row class="top-20">
+    <ion-col size="12" text-center class="profile-center profile-title">
+      <ion-label>
+        <h1>Actualizar perfil</h1>
+      </ion-label>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="top-20">
+    <ion-col size="12" text-center class="profile-center">
+      <img [src]="avatarSelected" class="img-avatar">
+    </ion-col>
+
+  </ion-row>
+
+  <app-avatar-selector [currentAvatar]="currentAvatar" (avatarSelected)="selectedAvatar($event)"></app-avatar-selector>
+
+  <form class="formEdit" (ngSubmit)="updateUser(formUpdate)" #formUpdate="ngForm">
+    <ion-row>
+      <ion-col>
+
+        <ion-list>
+          <ion-item>
+            <ion-input [(ngModel)]="user.email" name="email" type="email" labelPlacement="floating" label="Email"
+              required></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input [(ngModel)]="user.username" name="nombre" type="text" labelPlacement="floating" label="Nombre"
+              required></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col text-center class="btn-container">
+        <ion-button type="submit" color="main" shape="round">
+          Actualizar
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+  </form>
+
+
+</ion-content>

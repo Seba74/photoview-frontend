@@ -1,0 +1,28 @@
+.spinner-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.img-container{
+    width: 100%;
+    height: 100%;
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.images-uploaded{
+    display: grid;
+    grid-template-columns: repeat(2, 180px);
+    grid-gap: 10px;
+    place-content: center;
+    padding-right: 20px;
+}
+
+ion-card {
+    padding: 0;
+}

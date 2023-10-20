@@ -1,0 +1,15 @@
+<app-header></app-header>
+<ion-content [fullscreen]="true">
+
+  <ion-refresher color="main" slot="fixed" (ionRefresh)="refreshPosts($event)" pullFactor="0.8" pullMin="60"
+    pullMax="120">
+    <ion-refresher-content refreshingSpinner="bubbles" pullingIcon="chevron-down-circle-outline"></ion-refresher-content>
+  </ion-refresher>
+
+  <app-posts [posts]="posts"></app-posts>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="getPosts($event)" [disabled]="disabled">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

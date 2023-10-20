@@ -1,0 +1,7 @@
+{
+  "name": "photoViwer-frontend",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

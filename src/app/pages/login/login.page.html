@@ -1,0 +1,122 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <swiper-container [modules]="swiperModules" #mainSwiper class="mainSlide" [allowTouchMove]="false">
+
+    <swiper-slide>
+
+      <form class="form-container" (ngSubmit)="login(formLogin)" #formLogin="ngForm">
+        <ion-grid fixed class="login-content">
+
+          <ion-row>
+            <ion-col class="avatar-container">
+              <img src="https://ionicframework.com/docs/img/demos/avatar.svg">
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col>
+              <ion-list>
+
+                <ion-item>
+                  <ion-input [(ngModel)]="loginUser.email" name="email" type="email" labelPlacement="floating"
+                    label="Email" color="main" required></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-input [(ngModel)]="loginUser.password" name="password" type="password" labelPlacement="floating"
+                    label="Contraseña" color="main" required></ion-input>
+                </ion-item>
+
+              </ion-list>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col class="btn-container">
+              <ion-button type="submit" color="main" shape="round" [disabled]="!formLogin.form.valid">
+                Login
+              </ion-button>
+            </ion-col>
+          </ion-row>
+
+        </ion-grid>
+
+        <div class="spinner-container" *ngIf="loading">
+          <ion-spinner name="dots"></ion-spinner>
+        </div>
+
+
+      </form>
+    </swiper-slide>
+    <swiper-slide>
+      <div class="select-avatar">
+
+        <app-avatar-selector (avatarSelected)="selectedAvatar($event)"></app-avatar-selector>
+
+        <form (ngSubmit)="register(formRegister)" #formRegister="ngForm" class="form-container">
+          <ion-row>
+            <ion-col>
+
+              <ion-list>
+                <ion-item>
+                  <ion-input [(ngModel)]="registerUser.email" name="email" type="email" labelPlacement="floating"
+                    label="Email" color="main" required></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-input [(ngModel)]="registerUser.username" name="name" type="text" labelPlacement="floating"
+                    label="Nombre" color="main" required></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-input [(ngModel)]="registerUser.password" name="password" type="password"
+                    labelPlacement="floating" label="Contraseña" color="main" required></ion-input>
+                </ion-item>
+              </ion-list>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col class="create-user-btn-container">
+              <ion-button type="submit" color="main" shape="round" [disabled]="!formRegister.form.valid">
+                Crear usuario
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </form>
+
+        <div class="spinner-container" *ngIf="loading">
+          <ion-spinner name="dots"></ion-spinner>
+        </div>
+
+      </div>
+    </swiper-slide>
+  </swiper-container>
+</ion-content>
+
+<ion-footer no-border>
+  <ion-toolbar>
+
+    <ion-row>
+
+      <ion-col class="login-container">
+        <ion-button shape="round" expand="full" size="small" [fill]="activeButton? 'solid':'outline'" color="main"
+          (click)="goTologin()">
+          Ingresar
+        </ion-button>
+      </ion-col>
+
+      <ion-col class="register-container">
+        <ion-button shape="round" expand="full" size="small" [fill]="!activeButton? 'solid':'outline'" color="main"
+          (click)="goToRegister()">
+          Registrarme
+        </ion-button>
+      </ion-col>
+
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

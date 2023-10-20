@@ -1,0 +1,27 @@
+<div class="post">
+  <ion-item lines="none" class="post-item">
+    <div class="card-header">
+      <ion-avatar slot="start">
+        <ion-img [src]="post.user?.avatar"></ion-img>
+      </ion-avatar>
+      <ion-label>
+        <h2>{{post.user?.username}}</h2>
+      </ion-label>
+    </div>
+  </ion-item>
+  <app-map [coords]="post.coords" *ngIf="post.images!.length <= 0"></app-map>
+  <swiper-container class="mySwiper" slides-per-view="1" pagination *ngIf="post.images!.length > 0">
+    <swiper-slide *ngFor="let image of post.images">
+      <ion-img [src]="image | image: post.user!._id"></ion-img>
+    </swiper-slide>
+  </swiper-container>
+
+  <ion-item lines="none">
+    <ion-icon slot="start" name="heart-outline"></ion-icon>
+    <ion-icon slot="end" name="bookmark"></ion-icon>
+  </ion-item>
+
+  <ion-item lines="none" class="text-container">
+    <p>{{post.message}}</p>
+  </ion-item>
+</div>
